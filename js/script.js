@@ -37,20 +37,16 @@ const render = function() {
       render();
     });
 
+    btnTodoRemove.addEventListener('click', function () {
+      todoData.splice(todoData.indexOf(item), 1);
+      render();
+    });
+
     console.log(todoData);
 
     todoData.forEach(function () {
       
-    });    
-
-    // btnTodoRemove.forEach(function () {
-    //   btnTodoRemove.addEventListener('click', function (e) {
-    //     let serialNumber = todoData.indexOf(e.target);
-    //     todoData = todoData.slice(serialNumber, 1);
-    //     render();
-    //     // console.log(serialNumber);
-    //   });
-    // });
+    });
 
   });
 
@@ -71,8 +67,6 @@ todoControl.addEventListener('submit', function (event) {
 
     headerInput.value = '';
   }
-
-    // console.log(btnTodoRemove);
   
 });
 

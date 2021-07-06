@@ -19,6 +19,9 @@ const render = function() {
   todoList.textContent = '';
   todoCompleted.textContent = '';
 
+  todoData = localStorage.todoData ?
+  JSON.parse(localStorage.todoData) : [];
+  
   todoData.forEach(function (item) {
     const li = document.createElement('li');
 

@@ -8,6 +8,11 @@ const todoControl = document.querySelector('.todo-control'),
 
 let todoData = [];
 
+let rawData = localStorage.getItem('todoData');
+let parseData = JSON.parse(rawData);
+
+todoData = parseData;
+
 let btnTodoRemove = document.querySelectorAll('.todo-remove');
 
 const render = function() {
@@ -34,18 +39,16 @@ const render = function() {
 
     btnTodoCompleted.addEventListener('click', function () {
       item.completed = !item.completed;
+      localStorage.setItem('todoData', JSON.stringify(todoData));
       render();
     });
+
+    const btnTodoRemove = li.querySelector('.todo-remove');
 
     btnTodoRemove.addEventListener('click', function () {
       todoData.splice(todoData.indexOf(item), 1);
+      localStorage.setItem('todoData', JSON.stringify(todoData));
       render();
-    });
-
-    console.log(todoData);
-
-    todoData.forEach(function () {
-      
     });
 
   });
@@ -55,13 +58,15 @@ const render = function() {
 todoControl.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  if (headerInput.value !== '') {
+  if (headerInput.value.trim() !== '') {
     let newTodo = {
-      value: headerInput.value,
+      value: headerInput.value.trim(),
       completed: false
     };
   
     todoData.push(newTodo);
+
+    localStorage.setItem('todoData', JSON.stringify(todoData));
   
     render();
 
